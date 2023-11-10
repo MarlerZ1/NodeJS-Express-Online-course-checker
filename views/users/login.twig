@@ -1,0 +1,38 @@
+{% extends 'users/base.html' %}
+
+{% block css %}
+    <link href="/css/login.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+	<div class="loginBlock">
+        <form action="{% url 'users:login' %}" method="post">
+            {% csrf_token %}
+            <div class="margin-horizontal-48">
+                <br>
+                <div class="margin-vertical-16">
+                    <label for="{{ form.username.id_for_label }}">Имя пользователя: </label>
+                   {{ form.username }}
+                </div>
+                <br>
+                <div class="margin-vertical-16">
+                    <label class="small mb-1" for="{{ form.password.id_for_label }}">Пароль: </label>
+                    {{ form.password }}
+                </div>
+                <br>
+            </div>
+            <div class="outer width-100">
+                <div class="inner">
+                    <button class="submit" type="submit">Авторизоваться</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+{% endblock %}
+

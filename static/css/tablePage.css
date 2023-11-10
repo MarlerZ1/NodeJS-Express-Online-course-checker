@@ -1,0 +1,55 @@
+.groupTable {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+.groupTable tr {
+    border: 1px solid black;
+}
+.groupTable td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+.inner {
+    display: inline-block;
+}
+
+.outer {
+    width: 98vw;
+    text-align: center;
+    overflow:hidden; overflow-x:scroll;
+}
+.width-100 {
+    width: 100vw;
+}
+.accept {
+    background: green;
+    color: white;
+}
+
+.returned {
+    background: red;
+    color: white;
+}
+
+.evaluated {
+    background: #00a7ff;
+    color: white;
+}
+
+.none{
+    background-color: #eeeeee;
+}
+
+.groupTable .returned:hover,
+.groupTable .accept:hover,
+.groupTable .evaluated:hover {
+    scale: 1.2;
+    transition: 0.2s;
+}
+
+ .description {
+    margin: 0 5%;
+    text-indent: 32px;
+    text-align: justify;
+ }

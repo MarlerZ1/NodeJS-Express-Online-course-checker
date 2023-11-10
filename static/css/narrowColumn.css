@@ -1,0 +1,117 @@
+
+.content{
+    height: 80vh !important;
+    display: grid;
+    width: 100%;
+    background: white;
+    grid-template-columns: 35% 1fr 35%;
+    grid-template-areas: "leftpart center rightpart";
+
+}
+
+.center {
+    border-radius: 4px;
+    border: 1px solid #00a7ff;
+    margin-top: 8px;
+    height: calc(86vh - 10px);
+}
+
+.leftblock{
+    margin-top: 8px;
+    grid-area: leftpart;
+    margin-right: 8px;
+}
+
+.rightblock{
+    margin-top: 8px;
+    grid-area: rightpart;
+    margin-left: 8px;
+}
+
+.mainHeader {
+    text-align: center;
+    display: flex;
+    font-size: 34px;
+    justify-content: center;
+    margin: 16px;
+}
+.workCard{
+    margin:8px;
+}
+.workCard:hover{
+    transition: 0.2s;
+    scale: 1.015;
+    box-shadow: 0px 0px 15px black;
+}
+
+
+.addWorkButton {
+    background: #40ab1e;
+    padding: 8px;
+    font-size: 30px;
+    border-radius: 4px;
+
+    text-align: center;
+    margin: 10px 30px;
+    color: white;
+}
+
+.accepted{
+    border: 1px solid green;
+    border-radius: 4px;
+}
+.returned{
+    border: 1px solid red;
+    border-radius: 4px;
+}
+.onEvaluation{
+    border: 1px solid blue;
+    border-radius: 4px;
+}
+.works{
+    height:64vh;
+    overflow:hidden; overflow-y:scroll;
+}
+
+@media (max-width: 1100px){
+    .works{
+        height: 55vh !important;
+    }
+}
+
+.addWorkButton:hover,
+.groupCard:hover{
+    transition: 0.2s;
+    scale: 1.05;
+    box-shadow: 0px 0px 15px black;
+}
+
+
+.workName {
+    margin: 16px;
+}
+
+.description {
+    margin: 16px;
+    text-indent: 16px;
+}
+
+.grade{
+
+    width: fit-content;
+    font-size: 28px;
+    margin-right: 32px;
+    margin-bottom: 16px;
+    margin-left: auto;
+}
+
+.groupCard{
+    padding: 8px;
+    margin: 16px;
+    border: 1px solid #ff7300;
+    border-radius: 4px;
+}
+.groups {
+    height:  84vh;
+    overflow: hidden; overflow-y:scroll;
+}

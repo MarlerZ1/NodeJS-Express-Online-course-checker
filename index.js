@@ -9,7 +9,7 @@ const urls = require( './urls')
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'twig')
 
-app.use(express.static('public'))
+app.use(express.static('static'))
 
 urls.setUrls(app)
 

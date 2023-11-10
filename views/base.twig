@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% block css %}
+    <link href="/css/base.css" rel="stylesheet">
+    <link href="/css/header.css" rel="stylesheet">
+{% endblock %}
+
+{% block header %}
+	<header>
+        <h2 class="userName">{{ user.first_name }} {{ user.last_name }}</h2>
+        <h2 class="affiliation">{% if user.group == None %} Преподаватель {% else %} {{ user.group }} {% endif %}</h2>
+{#        <a href="{% url 'users:logout' %}" class="logout">Выйти</a>#}
+
+
+    </header>
+{% endblock %}
+
+{% block content %}
+	
+{% endblock %}
+
+{% block footer %}
+	
+{% endblock %}
+</body>
+</html>

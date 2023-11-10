@@ -1,0 +1,63 @@
+.loginBlock{
+    border: 1px solid blue;
+    border-radius: 4px;
+    height: max-content;
+    width: calc(25vw);
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+}
+
+.submit {
+    color: white;
+    border: none;
+    background: #40ab1e;
+    padding: 8px;
+    font-size: 30px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.submit:hover{
+    transition: 0.2s;
+    scale: 1.05;
+    box-shadow: 0px 0px 15px black;
+}
+.margin-vertical-16{
+    margin: 16px 0px;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.inner {
+    display: inline-block;
+}
+
+.outer {
+    width: 100%;
+    text-align: center;
+}
+.margin-horizontal-48{
+    margin-left: 48px;
+    margin-right: 48px;
+}
+.loginFormInput{
+    padding: 8px;
+    border: 1px solid orange;
+    border-radius: 4px;
+    margin-right: 10px;
+    width: calc(100%);
+}
+
+@media (max-width: 1024px){
+    .submit{
+        font-size: 20px;
+    }
+}

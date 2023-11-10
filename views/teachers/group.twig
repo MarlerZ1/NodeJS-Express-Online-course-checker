@@ -1,0 +1,67 @@
+{% extends 'base.twig' %}
+{% load work_list_tags %}
+{%  block css %}
+	<link href="/css/header.css" rel="stylesheet">
+    <link href="/css/tablePage.css" rel="stylesheet">
+    <link href="/css/base.css" rel="stylesheet">
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="outer">
+        <div class="inner">
+            <table class="groupTable">
+                <tbody>
+                    <tr>
+                        <td>{{ group }}</td>
+                        {% for task in taskList %}
+                        <td>
+                            <div>
+                                <p>{{ task.getNumber }}</p>
+                            </div>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% for student in studentList %}
+                    <tr>
+                        <td class="fixed">
+                            <div>
+                                <p>{{ student }}</p>
+                            </div>
+                        </td>
+                        {% for work in works|get_student_works:student %}
+
+                            {% if work %}
+                                {% if work.isEvaluate%}
+                                    {% if work.grade != 0 %}
+                                        <td class="returned" onclick="window.location='{% url 'teachers:workCheck' work.id %}'">{{ work.grade }}</td>
+                                    {% else %}
+                                        <td class="evaluated" onclick="window.location='{% url 'teachers:workCheck' work.id %}'"></td>
+                                    {% endif %}
+                                {% else %}
+                                    <td class="accept">{{ work.grade }}</td>
+                                {% endif %}
+                            {% else %}
+                                <td class="none"></td>
+                            {% endif %}
+
+
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+{% endblock %}

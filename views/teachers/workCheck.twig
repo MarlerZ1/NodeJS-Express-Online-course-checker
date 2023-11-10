@@ -1,0 +1,95 @@
+{% extends 'base.twig' %}
+
+
+{% block css %}
+	<link href="/css/header.css" rel="stylesheet">
+    <link href="/css/wideColumn.css" rel="stylesheet">
+    <link href="/css/base.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <div class="leftblock"></div>
+        <div class="center">
+            <div class="outer width-100">
+                <div class="inner">
+                    <h2 class="margin-vertical-16">{{ work.task.number }}  {{ work.task.name }}</h2>
+                </div>
+
+            </div>
+            <div class="width-100">
+                <p class="description"> {{ work.task.description }}</p>
+                <br>
+            </div>
+            <div class="outer width-100">
+                <div class="inner">
+                    <p class="margin-vertical-16"> <b>Работа студента</b></p>
+                </div>
+            </div>
+
+            <div class="outer width-100">
+                        <div class="inner width-100 divtext">
+                            {{ work.code|linebreaks }}
+                            <br>
+                        </div>
+                </div>
+
+                <form action="{% url 'teachers:workCheck' work.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="outer width-100">
+                        <p class="margin-vertical-16"><b>Найденные ошибки</b></p>
+                    </div>
+                    <div class="outer width-100">
+                        <div class="inner width-100">{{ workFeedbackForm.mistakeDescription }}</div>
+                    </div>
+
+                    <div class="outer width-100">
+                        <div class="inner ">
+                           <p class="margin-vertical-16"><b>Предлагаемые решения</b></p>
+                        </div>
+                    </div>
+
+                    <div class="outer width-100">
+                        <div class="inner width-100">
+                            {{ workFeedbackForm.proposedSolution }}
+                        </div>
+                    </div>
+                    <script>
+                         function resizeTextarea(textarea) {
+                                textarea.style.height = "auto";
+                                textarea.style.height = textarea.scrollHeight + 10 + "px";
+                         }
+                    </script>
+                    <div class="outer width-100">
+                        <div class="inner">
+                            <p class="margin-vertical-16"><b>Оценка</b></p>
+                        </div>
+                    </div>
+
+                    <div class="outer width-100">
+                        <div class="inner">
+                            <b>{{ workEvaluationForm.grade }}</b>
+                        </div>
+
+                    </div>
+
+                    <div class="outer width-100">
+                        <div class="inner">
+                            <button class="submit margin-vertical-16" type="submit">Оценить</button>
+                        </div>
+
+                    </div>
+
+
+                </form>
+
+        </div>
+        <div class="rightblock"></div>
+    </div>
+	<div>
+
+
+    </div>
+
+{% endblock %}

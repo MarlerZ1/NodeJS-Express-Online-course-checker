@@ -1,0 +1,36 @@
+header{
+    width: 100%;
+    height: 12vh;
+    background: radial-gradient(circle, rgba(61, 151, 168, 0.8) 15%, rgba(65, 118, 144, 1) 100%);
+    display: flex;
+    align-items: center;
+}
+
+.userName {
+    font-size: 32px;
+    margin-left: 50px;
+    -webkit-text-stroke:1px #f5dd5d;
+    -webkit-text-fill-color:transparent;
+}
+
+.logout {
+    color: #f5dd5d;
+    transition: .2s;
+    position: absolute;
+    right: 0;
+    margin-right: 30px;
+    font-size: 24px;
+}
+.logout:hover{
+     font-size: 26px;
+    -webkit-text-fill-color: chartreuse;
+}
+
+.affiliation {
+    position: absolute;
+    right: 120px;
+    font-size: 32px;
+    -webkit-text-stroke:1px #f5dd5d;
+    -webkit-text-fill-color:transparent;
+}
+

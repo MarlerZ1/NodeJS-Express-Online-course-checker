@@ -1,8 +1,8 @@
 function setUrls(app){
 
     app.get('/', (req, res) => {
-        res.render('index', {
-            message: "Главная!!!!!страница"
+        res.render('teachers/groupList', {
+            'groups': [],
         });
     });
 
