@@ -12,7 +12,7 @@
             <div class="center">
             <div class="groups">
                 {% for group in groups %}
-                    <a href="/"><div class="groupCard cenralize"><h2>{{ group }}</h2></div></a>
+                    <a href="/"><div class="groupCard cenralize"><h2>{{ group.groupName }}-{{ group.groupNumber }}-{{ group.groupYear }}</h2></div></a>
                 {% endfor%}
 
             </div>
