@@ -17,7 +17,6 @@ function setUrls(app){
         });
     });
     app.get('/user/group/:id', (req, res) => {
-        console.log(req.params.id)
         connection.query("SELECT * FROM user WHERE groupId=?;", [req.params.id], (err, result) =>{
                 res.render('teachers/group', {
                     'students':  result,
@@ -26,6 +25,26 @@ function setUrls(app){
         });
     });
 
+    app.get('/user/work/:id', (req, res) => {
+        console.log(req.params.id)
+        connection.query("SELECT * FROM work WHERE userId=?;", [req.params.id], async (err, workResult) =>{
+
+            context = []
+            for (let i= 0; i < workResult.length; i++) {
+                await connection.promise().query("SELECT * FROM task WHERE taskID=?;", [workResult[i].taskId]).then(([rows, fields]) => {
+                    console.log(rows)
+                    console.log(fields)
+                    context[i] = {
+                            "Work": workResult[i],
+                            "Task": rows[0]
+                    }
+                })
+            }
+            // console.log(JSON.stringify(context))
+            res.render('teachers/workList', {'works': context});
+
+        });
+    });
 
 }
 

@@ -11,8 +11,8 @@
         <div class="leftblock"></div>
         <div class="center">
             <div class="groups">
-                {% for student in students %}
-                    <a href="/user/work/{{ student.userId }}"><div class="groupCard cenralize"><h2>{{ student.first_name }} {{ student.last_name }}</h2></div></a>
+                {% for work in works %}
+                    <a href="/user/group/{{ work.Work.workId }}"><div class="groupCard cenralize"><h2>{{ work.Task.taskId }} {{ work.Task.name }}</h2></div></a>
                 {% endfor%}
 
             </div>
