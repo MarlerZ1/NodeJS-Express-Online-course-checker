@@ -10,7 +10,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'twig')
 
 app.use(express.static('static'))
-
+app.use(express.urlencoded({ extended: false}))
 urls.setUrls(app)
 
 app.set("twig options", {

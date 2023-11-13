@@ -8,18 +8,32 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {% endblock %}
 
+{% block header %}
+    <header>
+        <h2 class="userName"><a href="/"><-</a></h2>
+        <h2 class="affiliation"> Преподаватель</h2>
+        {#        <a href="{% url 'users:logout' %}" class="logout">Выйти</a>#}
+    </header>
+{% endblock %}
+{% block header %}
+    <header>
+        <h2 class="userName"><a href="/user/works/{{ work.userId }}"><-</a></h2>
+        <h2 class="affiliation"> Преподаватель</h2>
+        {#        <a href="{% url 'users:logout' %}" class="logout">Выйти</a>#}
+    </header>
+{% endblock %}
 {% block content %}
     <div class="content">
         <div class="leftblock"></div>
         <div class="center">
             <div class="outer width-100">
                 <div class="inner">
-                    <h2 class="margin-vertical-16">{{ work.task.number }}  {{ work.task.name }}</h2>
+                    <h2 class="margin-vertical-16">{{ task.number }}  {{ task.name }}</h2>
                 </div>
 
             </div>
             <div class="width-100">
-                <p class="description"> {{ work.task.description }}</p>
+                <p class="description"> {{ task.description }}</p>
                 <br>
             </div>
             <div class="outer width-100">
@@ -30,18 +44,18 @@
 
             <div class="outer width-100">
                         <div class="inner width-100 divtext">
-                            {{ work.code|linebreaks }}
+                            {{ work.code }}
                             <br>
                         </div>
-                </div>
+            </div>
 
-                <form action="{% url 'teachers:workCheck' work.id %}" method="post">
-                    {% csrf_token %}
+                <form action="/check/ {{ work.workId}} " method="post">
+{#                    {% csrf_token %}#}
                     <div class="outer width-100">
                         <p class="margin-vertical-16"><b>Найденные ошибки</b></p>
                     </div>
                     <div class="outer width-100">
-                        <div class="inner width-100">{{ workFeedbackForm.mistakeDescription }}</div>
+                        <div class="inner width-100"><textarea name="mistakeDescription" id="code" class="code" placeholder="Введите найденные ошибки" onkeyup="resizeTextarea(this)">{% if feedback %}{{ feedback.mistakeDescription }}{% endif %}</textarea></div>
                     </div>
 
                     <div class="outer width-100">
@@ -52,7 +66,7 @@
 
                     <div class="outer width-100">
                         <div class="inner width-100">
-                            {{ workFeedbackForm.proposedSolution }}
+                            <textarea name="proposedSolution" id="code" class="code" placeholder="Введите предлагаемое решение" onkeyup="resizeTextarea(this)">{% if feedback %}{{ feedback.proposedSolution }}{% endif %}</textarea>
                         </div>
                     </div>
                     <script>
@@ -69,7 +83,7 @@
 
                     <div class="outer width-100">
                         <div class="inner">
-                            <b>{{ workEvaluationForm.grade }}</b>
+                            <b><input type="number" step="1" pattern="\d+" value="{{ work.grade }}" min="0" max="5" name="grade"/></b>
                         </div>
 
                     </div>
