@@ -4,6 +4,7 @@
     <link href="/css/header.css" rel="stylesheet">
     <link href="/css/narrowColumn.css" rel="stylesheet">
     <link href="/css/base.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {% endblock %}
 {% block header %}
     <header>
@@ -16,6 +17,37 @@
     <div class="content">
         <div class="leftblock"></div>
         <div class="center">
+            <div>
+                <form action="/filter" id="id_radio">
+                    <input type="radio" id="radiobtn" class="radiobtn" name="grade_filt" value="0">
+                    <label for="radiobtn">0</label>
+                    <input type="radio" id="radiobtn" class="radiobtn" name="grade_filt" value="1">
+                    <label for="radiobtn">1</label>
+                    <input type="radio" id="radiobtn" class="radiobtn" name="grade_filt" value="2">
+                    <label for="radiobtn">2</label>
+                    <input type="radio" id="radiobtn" class="radiobtn" name="grade_filt" value="3">
+                    <label for="radiobtn">3</label>
+                    <input type="radio" id="radiobtn" class="radiobtn" name="grade_filt" value="4">
+                    <label for="radiobtn">4</label>
+                    <input type="radio" id="radiobtn" class="radiobtn" name="grade_filt" value="5">
+                    <label for="radiobtn">5</label>
+                </form>
+
+                <script>
+                    $(document).ready(function () {
+                        $('#radiobtn').change(function() {
+                            $grade = $(this).val()
+
+                            $.ajax({
+                                url: "/filter",
+                                data: { grade: $grade },
+                                success: function(data){}
+                            });
+                        });
+                    });
+                </script>
+
+            </div>
             <div class="groups">
                 {% for work in works %}
                     <a href="/user/works/work/{{ work.Work.workId }}"><div class="groupCard cenralize"><h2>{{ work.Task.taskId }} {{ work.Task.name }}</h2></div></a>

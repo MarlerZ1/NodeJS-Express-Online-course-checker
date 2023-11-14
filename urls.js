@@ -103,6 +103,12 @@ function setUrls(app){
             })
         });
     });
+
+
+    app.get('/filter', (req, res)=>{
+
+    })
+
 }
 
 module.exports = {setUrls}
