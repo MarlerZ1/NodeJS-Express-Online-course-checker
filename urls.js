@@ -45,12 +45,47 @@ function setUrls(app){
             // console.log(JSON.stringify(context))
             res.render('teachers/workList', {
                 'works': context,
-                'group': group
+                'group': group,
+                'userId': req.params.id,
+                'grade': 10
             });
 
         });
     });
 
+    app.get('/user/works/filter/:id/:grade', (req, res) => {
+        console.log(123)
+
+        if (req.params.grade == 10)
+            res.redirect('/user/works/' + req.params.id);
+        group = 0
+        connection.query("SELECT * FROM work WHERE userId=? AND grade=?;", [req.params.id, req.params.grade], async (err, workResult) =>{
+            console.log(req.params.id)
+            context = []
+            for (let i= 0; i < workResult.length; i++) {
+                await connection.promise().query("SELECT * FROM task WHERE taskID=?;", [workResult[i].taskId]).then(async ([rows, fields]) => {
+                    await connection.promise().query("SELECT * FROM user WHERE userId=?;", [workResult[i].userId]).then(([groupRows, fields]) => {
+                        group = groupRows[0].groupId
+                        context[i] = {
+                            "Work": workResult[i],
+                            "Task": rows[0]
+                        }
+                    })
+                })
+            }
+            await connection.promise().query("SELECT * FROM user WHERE userId=?;", [req.params.id]).then(([groupRows, fields]) => {
+                group = groupRows[0].groupId
+            })
+            // console.log(JSON.stringify(context))
+            res.render('teachers/workList', {
+                'works': context,
+                'group': group,
+                'userId': req.params.id,
+                'grade': req.params.grade
+            });
+
+        });
+    });
 
     app.get('/user/works/work/:id', (req, res) => {
         connection.query("SELECT * FROM work WHERE workId=?;", [req.params.id], (err, works) =>{
@@ -105,8 +140,9 @@ function setUrls(app){
     });
 
 
-    app.get('/filter', (req, res)=>{
-
+    app.post('/filter/:id', (req, res)=>{
+        console.log("grade " + req.body.grade_filt)
+        res.redirect('/user/works/filter/' + req.params.id + '/' + req.body.grade_filt);
     })
 
 }

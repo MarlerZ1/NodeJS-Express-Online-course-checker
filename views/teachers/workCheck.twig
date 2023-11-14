@@ -10,14 +10,7 @@
 
 {% block header %}
     <header>
-        <h2 class="userName"><a href="/"><-</a></h2>
-        <h2 class="affiliation"> Преподаватель</h2>
-        {#        <a href="{% url 'users:logout' %}" class="logout">Выйти</a>#}
-    </header>
-{% endblock %}
-{% block header %}
-    <header>
-        <h2 class="userName"><a href="/user/works/{{ work.userId }}"><-</a></h2>
+        <h2 class="userName"><a href="/user/works/{{ work.userId }}"><</a></h2>
         <h2 class="affiliation"> Преподаватель</h2>
         {#        <a href="{% url 'users:logout' %}" class="logout">Выйти</a>#}
     </header>
