@@ -1,6 +1,5 @@
 {% extends 'base.twig' %}
 
-
 {% block css %}
 	<link href="/css/header.css" rel="stylesheet">
     <link href="/css/wideColumn.css" rel="stylesheet">
@@ -12,7 +11,6 @@
     <header>
         <h2 class="userName"><a href="/user/works/{{ work.userId }}"><</a></h2>
         <h2 class="affiliation"> Преподаватель</h2>
-        {#        <a href="{% url 'users:logout' %}" class="logout">Выйти</a>#}
     </header>
 {% endblock %}
 {% block content %}
@@ -36,14 +34,13 @@
             </div>
 
             <div class="outer width-100">
-                        <div class="inner width-100 divtext">
-                            {{ work.code }}
-                            <br>
-                        </div>
+                <div class="inner width-100 divtext">
+                    {{ work.code }}
+                    <br>
+                </div>
             </div>
 
                 <form action="/check/ {{ work.workId}} " method="post">
-{#                    {% csrf_token %}#}
                     <div class="outer width-100">
                         <p class="margin-vertical-16"><b>Найденные ошибки</b></p>
                     </div>
@@ -78,25 +75,17 @@
                         <div class="inner">
                             <b><input type="number" step="1" pattern="\d+" value="{{ work.grade }}" min="0" max="5" name="grade"/></b>
                         </div>
-
                     </div>
 
                     <div class="outer width-100">
                         <div class="inner">
                             <button class="submit margin-vertical-16" type="submit">Оценить</button>
                         </div>
-
                     </div>
-
-
                 </form>
 
         </div>
         <div class="rightblock"></div>
-    </div>
-	<div>
-
-
     </div>
 
 {% endblock %}

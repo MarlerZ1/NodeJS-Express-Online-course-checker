@@ -10,19 +10,19 @@ const connection = mysql.createConnection({
 connection.connect()
 
 function setUrls(app){
-    connection.query("SELECT * FROM studentgroup;", (err, result) =>{
-        app.get('/', (req, res) => {
+    app.get('/', (req, res) => {
+        connection.query("SELECT * FROM studentgroup;", (err, result) =>{
             res.render('teachers/groupList', {
                 'groups':  result,
             });
         });
     });
+
     app.get('/user/group/:id', (req, res) => {
         connection.query("SELECT * FROM user WHERE groupId=?;", [req.params.id], (err, result) =>{
-                res.render('teachers/group', {
-                    'students':  result,
-                });
-
+            res.render('teachers/group', {
+                'students':  result,
+            });
         });
     });
 
@@ -42,20 +42,17 @@ function setUrls(app){
                     })
                 })
             }
-            // console.log(JSON.stringify(context))
+
             res.render('teachers/workList', {
                 'works': context,
                 'group': group,
                 'userId': req.params.id,
                 'grade': 10
             });
-
         });
     });
 
     app.get('/user/works/filter/:id/:grade', (req, res) => {
-        console.log(123)
-
         if (req.params.grade == 10)
             res.redirect('/user/works/' + req.params.id);
         group = 0
@@ -76,7 +73,6 @@ function setUrls(app){
             await connection.promise().query("SELECT * FROM user WHERE userId=?;", [req.params.id]).then(([groupRows, fields]) => {
                 group = groupRows[0].groupId
             })
-            // console.log(JSON.stringify(context))
             res.render('teachers/workList', {
                 'works': context,
                 'group': group,
@@ -114,26 +110,13 @@ function setUrls(app){
                     group = 0
                     context = []
                     if (feedback.length === 0)
-                        await connection.promise().query("INSERT INTO feedback (proposedSolution, mistakeDescription, workId) VALUES (?, ?, ?)", [req.body.proposedSolution, req.body.mistakeDescription, req.params.id])
+                        await connection.promise().query("INSERT INTO feedback (proposedSolution, mistakeDescription, workId) VALUES (?, ?, ?)",
+                            [req.body.proposedSolution, req.body.mistakeDescription, req.params.id])
                     else
-                        await connection.promise().query("UPDATE feedback SET proposedSolution=?, mistakeDescription=? WHERE workId=?", [req.body.proposedSolution, req.body.mistakeDescription, req.params.id])
+                        await connection.promise().query("UPDATE feedback SET proposedSolution=?, mistakeDescription=? WHERE workId=?",
+                            [req.body.proposedSolution, req.body.mistakeDescription, req.params.id])
 
-
-                    // connection.query("SELECT * FROM work WHERE userId=?;", [works[0].userId], async (err, workResult) =>{
-                        // for (let i= 0; i < workResult.length; i++) {
-                        //     await connection.promise().query("SELECT * FROM task WHERE taskID=?;", [workResult[i].taskId]).then(async ([rows, fields]) => {
-                        //         await connection.promise().query("SELECT * FROM user WHERE userId=?;", [workResult[i].userId]).then(([groupRows, fields]) => {
-                        //             group = groupRows[0].groupId
-                        //             context[i] = {
-                        //                 "Work": workResult[i],
-                        //                 "Task": rows[0]
-                        //             }
-                        //         })
-                        //     })
-                        // }
-                        console.log("I`M HERE")
                         res.redirect('/user/works/' + works[0].userId);
-                    // });
                 })
             })
         });

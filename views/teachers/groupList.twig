@@ -6,27 +6,19 @@
     <link href="/css/base.css" rel="stylesheet">
 {% endblock %}
 {% block header %}
-    <header>
-    </header>
+    <header></header>
 {% endblock %}
 {% block content %}
         <div class="content">
             <div class="leftblock"></div>
             <div class="center">
-            <div class="groups">
-                {% for group in groups %}
-                    <a href="/user/group/{{ group.groupId }}"><div class="groupCard cenralize"><h2>{{ group.groupName }}-{{ group.groupNumber }}-{{ group.groupYear }}</h2></div></a>
-                {% endfor%}
-
-            </div>
+                <div class="groups">
+                    {% for group in groups %}
+                        <a href="/user/group/{{ group.groupId }}"><div class="groupCard cenralize"><h2>{{ group.groupName }}-{{ group.groupNumber }}-{{ group.groupYear }}</h2></div></a>
+                    {% endfor%}
+                </div>
             </div>
             <div class="rightblock"></div>
-
         </div>
-
-
-
-
-
 {% endblock %}
 
