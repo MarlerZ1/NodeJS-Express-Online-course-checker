@@ -4,7 +4,7 @@ const {compile} = require("twig/lib/compile");
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '11337799Ee__',
+    password: '{вставить сюда пароль}',
     database: 'new_db'
 })
 connection.connect()
